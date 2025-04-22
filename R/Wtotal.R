@@ -18,9 +18,9 @@
 
 Wtotal <- 
       function(g){
-            stopifnot(is.igraph(g))
+            stopifnot(is_igraph(g))
             
-            s_outs <- graph.strength(g, mode="out", loops=FALSE)
+            s_outs <- strength(g, mode="out", loops=FALSE)
             totalw <- sum(s_outs)
             
             return(totalw)
