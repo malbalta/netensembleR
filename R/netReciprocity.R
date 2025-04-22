@@ -26,18 +26,18 @@
 
 netReciprocity <-
       function(g, nm=c("DWCM"), n_samples, ...) {
-            stopifnot((is.igraph(g) | is.matrix(g)), is.character(nm), is_wholenumber(n_samples))
+            stopifnot((is_igraph(g) | is.matrix(g)), is.character(nm), is_wholenumber(n_samples))
             
             # convert input to igraph object if necessary
             if (is.matrix(g)){
                   
                   if (nm=="DWCM") {
                         Matrix <- g
-                        g <- graph.adjacency(Matrix, "directed", "weight")    
+                        g <- as_adjacency_matrix(Matrix, "directed", "weight")    
                   }
                   
             } else {
-                  A <- get.adjacency(g, attr="weight")
+                  A <- as_adjacency_matrix(g, attr="weight")
                   Matrix <- as.matrix(A)
             }
             
